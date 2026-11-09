@@ -1,0 +1,10 @@
+{
+  "name": "Testing launcher",
+  "format": "tvhomemaker-zip",
+  "version": 1,
+  "created": "2026-11-09T11:56:33.967Z",
+  "apiKeyName": null,
+  "items": [
+    "clock"
+  ]
+}
