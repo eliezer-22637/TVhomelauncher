@@ -1,5 +1,19 @@
 {
+  "text": {
+    "text": "Welcome home!",
+    "font": "Outfit",
+    "size": 18
+  },
   "clock": {
-    "preset": "aes"
+    "preset": "bg"
+  },
+  "apps": {
+    "kit": "aes"
+  },
+  "network": {
+    "kit": "kit"
+  },
+  "bluetooth": {
+    "kit": "kit"
   }
 }
