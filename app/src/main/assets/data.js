@@ -1,0 +1,1 @@
+window.LAUNCHER={"name":"Testing launcher","items":{"clock":{"preset":"aes"}}};
