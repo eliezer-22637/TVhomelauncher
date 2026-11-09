@@ -1,1 +1,1 @@
-window.LAUNCHER={"name":"Testing launcher","items":{"clock":{"preset":"aes"}}};
+window.LAUNCHER={"name":"Testing launcher","items":{"text":{"text":"Welcome home!","font":"Outfit","size":18},"clock":{"preset":"bg","bgFile":"clock-bg.jpeg"},"apps":{"kit":"aes"},"network":{"kit":"kit"},"bluetooth":{"kit":"kit"}}};
