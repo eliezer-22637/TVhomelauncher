@@ -1,0 +1,30 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>
+html,body{margin:0;height:100%;background:#0c1226;color:#fff;font-family:sans-serif;overflow:hidden}
+#r{height:100%;padding:3vw;box-sizing:border-box;display:flex;flex-direction:column;gap:2vw;background-size:cover;background-position:center;position:relative}
+.clk{font-weight:700;font-size:9vw;line-height:1}.clk small{display:block;font-size:.3em;font-weight:400;opacity:.8;margin-top:.3em}
+.c-bg{text-shadow:0 .4vw 2vw rgba(0,0,0,.7)}
+.c-aes{background:linear-gradient(135deg,#ff9bd2,#ffd1e8);color:#7a1f55;border-radius:3vw;padding:2vw 3vw;align-self:flex-start}
+.c-saved{position:absolute;top:3vw;right:4vw;font-size:4.5vw;text-align:right}
+.apps{display:flex;flex-wrap:wrap;gap:2vw;margin-top:auto}
+.app{width:11vw;height:11vw;border:0;color:#fff;font:inherit;font-size:1.5vw;background:rgba(255,255,255,.14);border-radius:1vw;padding:.5vw;overflow:hidden}
+.app:focus,.pill:focus{outline:.4vw solid #4fe0c3}
+.aes .app{border-radius:50%;background:linear-gradient(135deg,#ff9bd2,#8a7bff)}
+.pills{display:flex;gap:1.6vw}.pill{border:0;color:#fff;font:inherit;font-size:2vw;background:rgba(255,255,255,.16);border-radius:99px;padding:.8vw 2.4vw}
+</style></head><body><div id="r"></div>
+<script src="data.js"></script>
+<script>
+var D=window.LAUNCHER||{},I=D.items||{},r=document.getElementById('r');
+var A=window.Android||{apps:function(){return '[]'},open:function(){},settings:function(){}};
+window.Launcher={root:r,data:D,open:function(p){A.open(p)},settings:function(a){A.settings(a)},apps:function(){try{return JSON.parse(A.apps())}catch(e){return []}}};
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x)e.textContent=x;return e}
+if(I.clock){
+ if(I.clock.bgFile)r.style.backgroundImage='linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.25)),url(assets/'+I.clock.bgFile+')';
+ var c=el('div','clk c-'+I.clock.preset);c.appendChild(document.createTextNode(''));c.appendChild(el('small'));r.appendChild(c);
+ (function t(){var d=new Date();c.firstChild.nodeValue=('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);c.lastChild.textContent=d.toDateString();setTimeout(t,1000)})();
+}
+if(I.text){var s=el('div','',I.text.text);s.style.fontFamily=I.text.font;s.style.fontSize=I.text.size*.42+'vw';r.appendChild(s)}
+if(I.apps){var a=el('div','apps'+(I.apps.kit==='aes'?' aes':''));r.appendChild(a);Launcher.apps().forEach(function(p){var b=el('button','app',p.label);b.onclick=function(){Launcher.open(p.pkg)};a.appendChild(b)})}
+var pl=el('div','pills');[['network','Wi-Fi','android.settings.WIFI_SETTINGS'],['bluetooth','Bluetooth','android.settings.BLUETOOTH_SETTINGS'],['device','Settings','android.settings.SETTINGS']].forEach(function(x){if(!I[x[0]])return;var b=el('button','pill',x[1]);b.onclick=function(){Launcher.settings(x[2])};pl.appendChild(b)});
+if(pl.children.length)r.appendChild(pl);
+</script>
+<script src="user.js"></script></body></html>
